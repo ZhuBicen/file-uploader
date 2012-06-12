@@ -702,17 +702,13 @@ qq.extend(qq.FileUploader.prototype, {
 		var cancel = document.getElementById("cancel")
 		qq.remove(cancel)
 		
-        // mark completed
-		/*
-        var item = this._getItemByFileId(id);                
-        qq.remove(this._find(item, 'cancel'));
-        qq.remove(this._find(item, 'spinner'));
+		item = document.getElementById("status-bar")
         
         if (result.success){
             qq.addClass(item, this._classes.success);    
         } else {
             qq.addClass(item, this._classes.fail);
-        }*/         
+        }        
     },
     _addToList: function(id, fileName){
         var item = qq.toElement(this._options.fileTemplate);                

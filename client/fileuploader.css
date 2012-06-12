@@ -83,11 +83,11 @@
 .qq-upload-fail .qq-upload-failed-text {
 	display: inline;
 }
-.qq-upload-list li.qq-upload-success {
+.qq-upload-success {
 	background-color: #5DA30C;
 	color: #FFFFFF;
 }
-.qq-upload-list li.qq-upload-fail {
+.qq-upload-fail {
 	background-color: #D60000;
 	color: #FFFFFF;
 }
