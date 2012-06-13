@@ -10,6 +10,7 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"time"
 )
 
 func SaveFile(fileName string, r io.Reader) error {
@@ -38,6 +39,11 @@ func GetFileName(fh *multipart.FileHeader) (string, error) {
 	filePath := itemHead[fileIndex+len(lookfor) : len(itemHead)-1]
 	_, fileName := filepath.Split(filePath)
 	return fileName, nil
+}
+
+func StatusHandler(w http.ResponseWriter, req *http.Request) {
+	log.Println("Received status request")
+	w.Write([]byte(fmt.Sprintf("AJAX response, StatusHandler, %s", time.Now().Format("20060102-15:04:05.000"))))
 }
 
 func UploadHandler(w http.ResponseWriter, req *http.Request) {
@@ -81,5 +87,6 @@ func UploadHandler(w http.ResponseWriter, req *http.Request) {
 func main() {
 	http.Handle("/", http.FileServer(http.Dir("../client")))
 	http.HandleFunc("/upload", UploadHandler)
-	http.ListenAndServe(":8080", nil)
+	http.HandleFunc("/status", StatusHandler)
+	http.ListenAndServe(":6543", nil)
 }
